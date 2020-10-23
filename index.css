@@ -1,0 +1,38 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    scroll-behavior: smooth;
+}
+body{
+    font-family: 'Segoe UI';
+}
+.col{
+    display: flex;
+    flex-direction: column;
+}
+.row{
+    display: flex;
+}
+ul,nav{
+    list-style: none;
+}
+/* Header and menu */
+nav>li{
+    flex:1 1;
+    padding: 10px;
+    text-align: center;
+}
+header{
+    width: 100%;
+    z-index: 5;
+    justify-content: space-between;
+    padding: 5px;
+}
+a{
+    text-decoration: none;
+    cursor: pointer;
+    color: inherit;
+}
