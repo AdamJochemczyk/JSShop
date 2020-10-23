@@ -9,6 +9,7 @@ html{
 body{
     font-family: 'Segoe UI';
 }
+/*basic flex*/
 .col{
     display: flex;
     flex-direction: column;
@@ -16,10 +17,11 @@ body{
 .row{
     display: flex;
 }
+
+/* Header and menu */
 ul,nav{
     list-style: none;
 }
-/* Header and menu */
 nav>li{
     flex:1 1;
     padding: 10px;
@@ -30,9 +32,53 @@ header{
     z-index: 5;
     justify-content: space-between;
     padding: 5px;
+    color: #fff;
+}
+header h2{
+    text-transform: uppercase;
+    margin-left: 1%;
 }
 a{
     text-decoration: none;
     cursor: pointer;
     color: inherit;
 }
+/*banner*/
+.banner{
+    text-align: center;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+    color: #fff;
+}
+.banner .banner-img {
+    background-image: url(/images/banner.jpg);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    min-height: 100vh;
+    background-size: cover;
+    justify-content: center;
+    font-weight: 800;
+    opacity: 0.85;
+}
+.banner-content{
+    opacity: 1;
+}
+.banner-content > h1{
+    font-size: 70px;
+}
+.banner-content >h3{
+    font-size: 25px;
+}
+.banner-content > a{
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 25px;
+    background: crimson;
+    border-radius: 50px;
+    text-transform: uppercase;
+    z-index: 5;
+}
+/*About us */
