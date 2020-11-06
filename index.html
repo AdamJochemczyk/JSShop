@@ -1,66 +1,105 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Yerbashop</title>
     <link rel="stylesheet" href="index.css" />
-</head>
-<body>
+  </head>
+  <body>
     <div class="col">
-        <header class="row">
-            <h2 class="logo"><a href="#">Yerbashop</a></h2>
+      <header class="row">
+        <h2 class="logo"><a href="#">Yerbashop</a></h2>
         <nav class="row">
-            <li><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="/shop.html">Shop</a></li>
-            <li><a href="#clients">Clients</a></li>
-            <li><a href="#contact">Contact</a></li>
+          <li><a href="#">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="/shop.html">Shop</a></li>
+          <li><a href="#clients">Clients</a></li>
+          <li><a href="#contact">Contact</a></li>
         </nav>
-        </header>
-        <section class="banner">
-            <div class="banner-img col">
-                <div class="banner-content">
-                <h1>Yerbashop</h1>
-                <h3>Drink yerba be healthy</h3>
-                <a href="shop.html" class="gotoshop-btn">Shop</a>
+      </header>
+      <section class="banner">
+        <div class="banner-img col">
+          <div class="banner-content">
+            <h1>Yerbashop</h1>
+            <h3>Drink yerba be healthy</h3>
+            <a href="shop.html" class="gotoshop-btn">Shop</a>
+          </div>
+        </div>
+      </section>
+      <section id="about">
+        <div class="row">
+          <h3 class="title">About us</h3>
+        </div>
+        <ul class="about-container">
+          <li class="about-left"></li>
+          <li class="about-right">
+            <h2>Yerbashop</h2>
+            <p>
+              Od dziesięciu lat hodujemy zioła do yerbamate. Posiadamy własne
+              mieszanki o szczególnych właściwościach. To sprawia, że zostaliśmy
+              docenieni przez klientów nie tylko w Polsce, ale i na całym
+              świecie.
+            </p>
+            <h3>Korzyści z picia yerbamate:</h3>
+            <p>Pobudza umysł i ciało, czyli wywołuje dobre samopoczucie</p>
+            <p>Zmniejsza ciśnienie krwi</p>
+            <p>Pomaga w walce z otyłością</p>
+            <p>Zapobiega osteoporozie</p>
+            <p>Oczyszcza tętnice</p>
+            <p>Wspomaga leczenie cukrzycy</p>
+            <p>
+              Zapraszamy do naszego sklepu. Skorzystaj z naszej oferty już dziś
+            </p>
+            <a href="shop.html" class="gotoshop-btn">Shop</a>
+          </li>
+        </ul>
+      </section>
+      <section id="shop">
+        <div class="row">
+          <h3 class="title">Top rated products</h3>
+        </div>
+        <ul class="cards">
+          <li>
+            <div class="product-box">
+                    <img class="product-img" src="images/product1.jpg" alt="guyaki traditional" />
+                <div class="product-params">
+                    <p class="product-name">guyaki traditional</p>
+                    <a href="shop.html" class="gotoshop-btn">Buy in shop</a>
                 </div>
             </div>
-        </section>
-        <section id="about">
-            <div class="row">
-                <h3 class="title">About us</h3>
+          </li>
+          <li>
+            <div class="product-box">
+                    <img class="product-img" src="images/product2.png" alt="cacha mate" />
+                <div class="product-params">
+                    <p class="product-name">cacha mate</p>
+                    <a href="shop.html" class="gotoshop-btn">Buy in shop</a>
+                </div>
             </div>
-                <ul class="about-container">
-                    <li class="about-left"></li>
-                    <li class="about-right">
-                        <h2>Yerbashop</h2>
-                        <p>Od dziesięciu lat hodujemy zioła do yerbamate. Posiadamy własne mieszanki o szczególnych właściwościach. To sprawia, że zostaliśmy docenieni przez klientów nie tylko w Polsce, ale i na całym świecie. </p>
-                        <h3>Korzyści z picia yerbamate:</h3>
-                        <p>Pobudza umysł i ciało, czyli wywołuje dobre samopoczucie</p>
-                        <p>Zmniejsza ciśnienie krwi</p>
-                        <p>Pomaga w walce z otyłością</p>
-                        <p>Zapobiega osteoporozie</p>
-                        <p>Oczyszcza tętnice</p>
-                        <p>Wspomaga leczenie cukrzycy</p>
-                        <p>Zapraszamy do naszego sklepu. Skorzystaj z naszej oferty już dziś</p>
-                        <a href="shop.html" class="gotoshop-btn">Shop</a>
-                    </li>
-                </ul>
-        </section>
-        <section id="shop">
-            Shop examples + shop
-        </section>
-        <section id="clients">
-            Clients opinions
-        </section>
-        <section id="Contact">
-            mail adres phone
-        </section>
-        <footer>
-
-        </footer>
+          </li>
+          <li>
+            <div class="product-box">
+                    <img class="product-img" src="images/product3.jpg" alt="elaborada" />
+                <div class="product-params">
+                  <p class="product-name">elaborada</p>
+                    <a href="shop.html" class="gotoshop-btn">Buy in shop</a>
+                </div>
+            </div>
+          </li>
+          <li>
+            <div class="product-box">
+                    <img class="product-img transform" src="images/trolley.jpg" alt="product1" />
+                <div class="product-params">
+                    <a href="shop.html" class="gotoshop-btn">Let's go shopping</a>
+                </div>
+            </div>
+          </li>
+        </ul>
+      </section>
+      <section id="clients">Clients opinions</section>
+      <section id="Contact">mail adres phone</section>
+      <footer></footer>
     </div>
-    
-</body>
+  </body>
 </html>
