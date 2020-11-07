@@ -129,6 +129,7 @@ a {
 /*shop examples*/
 #shop {
   background-color: #ddd;
+  margin-top: 20px;
 }
 #shop > .row {
   justify-content: center;
@@ -175,4 +176,32 @@ a {
 }
 .product-name::first-letter{
   text-transform: uppercase;
+}
+/* client opinions*/
+#clients {
+  margin-top: 15px;
+}
+#clients > .row{
+  justify-content: center;
+}
+.client-container{
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.client-img{
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  border: solid 1px beige;
+  object-fit: contain;
+}
+.client-opinion{
+  flex-basis: 70%;
+  padding: 0 15px;
+}
+.client-name{
+  margin-top: 5px;
+  font-size: 1.5em;
 }
