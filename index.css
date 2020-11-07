@@ -205,3 +205,54 @@ a {
   margin-top: 5px;
   font-size: 1.5em;
 }
+
+/*contact*/
+#contact{
+  background-color: #ddd;
+}
+#contact > .row{
+  justify-content: center;
+}
+.contact-column {
+  flex: 0 0 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.contact-column > div {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 3%;
+  padding: 1.5%;
+  box-shadow: 5px 5px 15px 15px rgba(0, 0, 0, 0.25);
+  border-radius: 2%;
+  background-color: #fff;
+}
+
+.contact-column > div > img {
+  width: 50%;
+}
+
+.contact-column > div > p {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  font-weight: bolder;
+  color: #000;
+}
+.contact-column > div > a{
+  color: #000;
+  text-transform: lowercase;
+}
+
+/*footer*/
+footer{
+  display: flex;
+  justify-content: center;
+  background-color: #000;
+  color: #fff;
+}
