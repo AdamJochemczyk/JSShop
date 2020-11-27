@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="keywords" content="yerbamate shop" />
+    <meta name="author" content="Adam Jochemczyk" />
+    <link rel="stylesheet" href="shop.css" />
+    <script
+      src="https://kit.fontawesome.com/b78e2da6f5.js"
+      crossorigin="anonymous"
+    ></script>
+    <title>Yerbashop</title>
+  </head>
+  <body>
+    <div>
+      <div class="order-summary">
+        <h1>Your order</h1>
+        
+      </div>
+    </div>
+    <div id="wrapper">
+    <div class="client">
+      <h2><a href="#">Yerbashop</a></h2>
+      <div class="cart">
+        <a class="summary">
+          <i class="fas fa-shopping-cart"></i>
+          <span class="incart"></span>
+        </a>
+      </div>
+    </div>
+    <section class="product-gallery"></section>
+    <div class='order-summary'>Order sum</div>
+    <footer>Made with ❤ by Adam Jochemczyk</footer>
+    </div>
+    <script>
+      //TODO:
+      //get shopCart and generate products inside with inputs
+      const productGallery = document.querySelector(".product-gallery");
+
+      const itemsInShop = [
+        {
+          name: "Guyaki traditional",
+          price: 2,
+        },
+        {
+          name: "Mate green",
+          price: 3,
+        },
+        {
+          name: "Elaborada",
+          price: 2.5,
+        },
+        {
+          name: "Zestaw do yerby",
+          price: 10,
+        },
+        {
+          name: "Rio negro",
+          price: 7.5,
+        },
+        {
+          name: "YerbaCan",
+          price: 5,
+        },
+      ];
+      function generateGallery(item, index) {
+        const { name, price } = item;
+        return `
+            <div class="product">
+             <p class="product-name">${name}</p>
+            <img src="images/product${
+              index + 1
+            }.jpg" alt="${name}" class="product-img">
+             <div class="product-params">
+                <p class="product-price"><span>${price}</span><span> $</span></p>
+                <a href="shop.html" class="addToShoppingCart">Add to cart</a>
+              </div>
+        </div>
+            `;
+      }
+
+      //better method for this?
+      const html1 = itemsInShop
+        .map((item, index) => generateGallery(item, index))
+        .join("");
+      const html2 = itemsInShop
+        .map((item, index) => generateGallery(item, index))
+        .join("");
+      const html = html1 + html2;
+      productGallery.innerHTML = html;
+
+      const productCounter = document.querySelector("span.incart");
+      const productsToBuy = [];
+
+      function handleClick(e) {
+        e.preventDefault();
+        const productSrc = e.currentTarget.parentNode.parentNode.querySelector(
+          "img"
+        ).src;
+        const productName = e.currentTarget.parentNode.parentNode.querySelector(
+          "img"
+        ).alt;
+        const productPrice = parseInt(e.currentTarget.parentNode.parentNode.querySelector(
+          ".product-price"
+        ).firstChild.innerHTML);
+
+        let found = false;
+        for (let i = 0; i < productsToBuy.length; i++) {
+          if (productsToBuy[i].alt == productName) {
+            productsToBuy[i].price+=productPrice
+            found=true
+            break;
+          }
+        }
+        if (!found) {
+          productsToBuy.push({
+            src: productSrc,
+            alt: productName,
+            price: productPrice,
+          });
+        }
+
+        productCounter.innerHTML = productsToBuy.length;
+      }
+      const products = document.querySelectorAll("a.addToShoppingCart");
+      products.forEach((product) =>
+        product.addEventListener("click", handleClick)
+      );
+
+      const wrapper=document.querySelector("#wrapper")
+      const goToSummaryBtn = document.querySelector("a.summary");
+      const summary=document.querySelector(".order-summary")
+      function orderSummary(e) {
+        e.preventDefault();
+        wrapper.classList.toggle("wrapper")
+        summary.classList.add("open-summary")
+      }
+      goToSummaryBtn.addEventListener("click", orderSummary);
+    </script>
+  </body>
+</html>

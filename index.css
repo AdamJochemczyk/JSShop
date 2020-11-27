@@ -71,7 +71,7 @@ a {
   color: #fff;
 }
 .banner .banner-img {
-  background: url(/images/banner.jpg) no-repeat center center;
+  background: url(./images/banner.jpg) no-repeat center center;
   position: absolute;
   top: 0;
   left: 0;
@@ -253,8 +253,7 @@ a {
 
 /*footer*/
 footer{
-  display: flex;
-  justify-content: center;
+  text-align: center;
   background-color: #000;
   color: #fff;
 }
