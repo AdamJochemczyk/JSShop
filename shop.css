@@ -12,6 +12,10 @@ a {
   cursor: pointer;
   color: inherit;
 }
+.wrapper{
+  filter: blur(.15rem);
+}
+/*Header*/
 .client{
   width: 100%;
   display: grid;
@@ -22,10 +26,7 @@ a {
   grid-template-areas: "a b";
   margin-bottom: 15px;
 }
-.logo{
-  grid-area: 'a';
-}
-.cart{
+.client__cart{
   grid-area: 'b';
   margin-right: 10px;
   font-size: 1.5rem;
@@ -34,12 +35,9 @@ a {
 .client i{
   color: #ac0d0d;
 }
-.summary{
-  cursor: pointer;
-}
 
 /*gallery*/
-.product-gallery {
+.productGallery {
   display: grid;
   grid-template-columns: repeat(4, 250px);
   grid-template-rows: repeat(3, minmax(420px,1fr));
@@ -57,24 +55,31 @@ a {
   background-color: #fff;
   box-shadow: 0px 0px 30px 3px rgba(0, 0, 0, 0.5);
   border-radius: 3.5px;
+  overflow: hidden;
 }
-.product-img{
+.img__container{
+  overflow: hidden;
+}
+.product__img{
   padding: 0 10px;
   width: 270px;
   height: 260px;
   object-fit: contain;
 }
-.product-params{
+.product__img:hover{
+  transform: scale(1.1);
+}
+.product__params{
     margin-top: auto;
     margin-bottom: 10px;
 }
-.product-name{
+.product__name{
   font-size: 1.5rem;
 }
-.product-name::first-letter{
+.product__name::first-letter{
   text-transform: uppercase;
 }
-.product-price{
+.product__price{
     font-size: 1.5rem;
 }
 .addToShoppingCart{
@@ -88,24 +93,56 @@ a {
   color: #fff;
   font-weight: 700;
 }
-.wrapper{
-  filter: blur(.15rem);
-}
-.order-summary{
+/*order summary*/
+.orderSummary{
   position: absolute; 
   left: 0; 
-  right: 0;  
-  width: 400px; /* Need a specific value to work */
+  top: -200%;  
+  width: 400px;
   z-index: -1;
   box-shadow: 0px 0px 30px 3px rgba(0, 0, 0, 0.5);
   background: #fff;
   text-align: center;
+  display: flex;
+  flex-direction: column;
 }
-.open-summary{
+.openSummary{
   z-index: 1;
   left: 35%;
-  top:20%;
+  top:2%;
 }
+.toBuyProduct{
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.toBuyProduct__left{
+  flex-basis: 30%;
+}
+.toBuyProduct__right{
+  flex-basis: 70%;
+}
+.toBuyProduct img{
+width: 100%;
+height: 100px;
+object-fit: scale-down;
+}
+#close{
+  margin: 2% 0 0 90%;
+}
+.summary{
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0 10px 10px;
+}
+.summary__submit{
+  background-color: crimson;
+  color: #fff;
+  margin: 0 10px;
+  padding: 5px;
+}
+
+/*footer*/
 footer{
   text-align: center;
   background-color: #000;
@@ -113,7 +150,7 @@ footer{
 }
 
 @media (max-width: 1100px){
-  .product-gallery{
+  .productGallery{
     grid-template-columns: repeat(auto-fit,250px);
   }
 }

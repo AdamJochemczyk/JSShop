@@ -10,133 +10,32 @@
       src="https://kit.fontawesome.com/b78e2da6f5.js"
       crossorigin="anonymous"
     ></script>
+    <script src="shop.js" defer></script>
     <title>Yerbashop</title>
   </head>
   <body>
-    <div>
-      <div class="order-summary">
+          <main>
+      <section class="orderSummary">
+        <a id="close">X</a>
         <h1>Your order</h1>
-        
-      </div>
-    </div>
+        <hr/>
+        <div class="product-in-summary">
+        </div>
+        <div class="summary"></div>
+      </section>
     <div id="wrapper">
     <div class="client">
       <h2><a href="#">Yerbashop</a></h2>
-      <div class="cart">
-        <a class="summary">
+      <div class="client__cart">
+        <a>
           <i class="fas fa-shopping-cart"></i>
-          <span class="incart"></span>
+          <span></span>
         </a>
       </div>
     </div>
-    <section class="product-gallery"></section>
-    <div class='order-summary'>Order sum</div>
+    <section class="productGallery"></section>
+    </main>
     <footer>Made with ❤ by Adam Jochemczyk</footer>
     </div>
-    <script>
-      //TODO:
-      //get shopCart and generate products inside with inputs
-      const productGallery = document.querySelector(".product-gallery");
-
-      const itemsInShop = [
-        {
-          name: "Guyaki traditional",
-          price: 2,
-        },
-        {
-          name: "Mate green",
-          price: 3,
-        },
-        {
-          name: "Elaborada",
-          price: 2.5,
-        },
-        {
-          name: "Zestaw do yerby",
-          price: 10,
-        },
-        {
-          name: "Rio negro",
-          price: 7.5,
-        },
-        {
-          name: "YerbaCan",
-          price: 5,
-        },
-      ];
-      function generateGallery(item, index) {
-        const { name, price } = item;
-        return `
-            <div class="product">
-             <p class="product-name">${name}</p>
-            <img src="images/product${
-              index + 1
-            }.jpg" alt="${name}" class="product-img">
-             <div class="product-params">
-                <p class="product-price"><span>${price}</span><span> $</span></p>
-                <a href="shop.html" class="addToShoppingCart">Add to cart</a>
-              </div>
-        </div>
-            `;
-      }
-
-      //better method for this?
-      const html1 = itemsInShop
-        .map((item, index) => generateGallery(item, index))
-        .join("");
-      const html2 = itemsInShop
-        .map((item, index) => generateGallery(item, index))
-        .join("");
-      const html = html1 + html2;
-      productGallery.innerHTML = html;
-
-      const productCounter = document.querySelector("span.incart");
-      const productsToBuy = [];
-
-      function handleClick(e) {
-        e.preventDefault();
-        const productSrc = e.currentTarget.parentNode.parentNode.querySelector(
-          "img"
-        ).src;
-        const productName = e.currentTarget.parentNode.parentNode.querySelector(
-          "img"
-        ).alt;
-        const productPrice = parseInt(e.currentTarget.parentNode.parentNode.querySelector(
-          ".product-price"
-        ).firstChild.innerHTML);
-
-        let found = false;
-        for (let i = 0; i < productsToBuy.length; i++) {
-          if (productsToBuy[i].alt == productName) {
-            productsToBuy[i].price+=productPrice
-            found=true
-            break;
-          }
-        }
-        if (!found) {
-          productsToBuy.push({
-            src: productSrc,
-            alt: productName,
-            price: productPrice,
-          });
-        }
-
-        productCounter.innerHTML = productsToBuy.length;
-      }
-      const products = document.querySelectorAll("a.addToShoppingCart");
-      products.forEach((product) =>
-        product.addEventListener("click", handleClick)
-      );
-
-      const wrapper=document.querySelector("#wrapper")
-      const goToSummaryBtn = document.querySelector("a.summary");
-      const summary=document.querySelector(".order-summary")
-      function orderSummary(e) {
-        e.preventDefault();
-        wrapper.classList.toggle("wrapper")
-        summary.classList.add("open-summary")
-      }
-      goToSummaryBtn.addEventListener("click", orderSummary);
-    </script>
   </body>
 </html>
