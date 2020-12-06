@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="index.css" />
   </head>
   <body>
-    <div class="col">
+    <main class="col">
       <header class="row">
         <h2 class="logo"><a href="#">Yerbashop</a></h2>
         <nav class="row">
@@ -21,8 +21,8 @@
       </header>
       <!-- Banner -->
       <section class="banner">
-        <div class="banner-img col">
-          <div class="banner-content">
+        <div class="banner__img col">
+          <div class="banner__content">
             <h1>Yerbashop</h1>
             <h3>Drink yerba be healthy</h3>
             <a href="shop.html" class="gotoshop-btn">Shop</a>
@@ -31,30 +31,23 @@
       </section>
       <!-- About us -->
       <section id="about">
-        <div class="row">
           <h3 class="title">About us</h3>
-        </div>
-        <ul class="about-container">
-          <li class="about-left">
+        <ul class="about">
+          <li class="about__left">
             <img src="images/aboutus.jpg" alt="" />
           </li>
-          <li class="about-right">
+          <li class="about__right">
             <h2>Yerbashop</h2>
             <p>
-              Od dziesięciu lat hodujemy zioła do yerbamate. Posiadamy własne
-              mieszanki o szczególnych właściwościach. To sprawia, że zostaliśmy
-              docenieni przez klientów nie tylko w Polsce, ale i na całym
-              świecie.
+              It's over 10 years we've produced yerbamate herbs. We have our own recipes with special properties. That's why our clients love us.
             </p>
-            <p>Korzyści z picia yerbamate:</p>
-            <p>Pobudza umysł i ciało, czyli wywołuje dobre samopoczucie</p>
-            <p>Zmniejsza ciśnienie krwi</p>
-            <p>Pomaga w walce z otyłością</p>
-            <p>Zapobiega osteoporozie</p>
-            <p>Oczyszcza tętnice</p>
-            <p>Wspomaga leczenie cukrzycy</p>
+            <p>Benefits of drinking yerbamate:</p>
+            <p>It stimulates the mind and body</p>
+            <p>It reduces stress and decrease blood pressure</p>
+            <p>It helps you lose weight</p>
+            <p>It is useful for the treatment of diabetes</p>
             <p>
-              Zapraszamy do naszego sklepu. Skorzystaj z naszej oferty już dziś
+              Visit our store today.
             </p>
             <a href="shop.html" class="gotoshop-btn">Shop</a>
           </li>
@@ -62,58 +55,56 @@
       </section>
       <!-- Shop -->
       <section id="shop">
-        <div class="row">
           <h3 class="title">Popular products</h3>
-        </div>
         <ul class="cards">
           <li>
-            <div class="product-box">
+            <div class="product">
               <img
-                class="product-img"
+                class="product__img"
                 src="images/product1.jpg"
                 alt="guyaki traditional"
               />
-              <div class="product-params">
-                <p class="product-name">guyaki traditional</p>
+              <div class="product__params">
+                <p class="product__name">guyaki traditional</p>
                 <a href="shop.html" class="gotoshop-btn">Buy in shop</a>
               </div>
             </div>
           </li>
           <li>
-            <div class="product-box">
+            <div class="product">
               <img
-                class="product-img"
+                class="product__img"
                 src="images/product2.jpg"
                 alt="cacha mate"
               />
-              <div class="product-params">
-                <p class="product-name">Mate green</p>
+              <div class="product__params">
+                <p class="product__name">Mate green</p>
                 <a href="shop.html" class="gotoshop-btn">Buy in shop</a>
               </div>
             </div>
           </li>
           <li>
-            <div class="product-box">
+            <div class="product">
               <img
-                class="product-img"
+                class="product__img"
                 src="images/product3.jpg"
                 alt="elaborada"
               />
-              <div class="product-params">
-                <p class="product-name">elaborada</p>
+              <div class="product__params">
+                <p class="product__name">elaborada</p>
                 <a href="shop.html" class="gotoshop-btn">Buy in shop</a>
               </div>
             </div>
           </li>
           <li>
-            <div class="product-box">
+            <div class="product">
               <img
-                class="product-img transform"
+                class="product__img transform"
                 src="images/trolley.jpg"
                 alt="product1"
               />
-              <div class="product-params">
-                <p class="product-name">Shop</p>
+              <div class="product__params">
+                <p class="product__name">Shop</p>
                 <a href="shop.html" class="gotoshop-btn">Let's go shopping</a>
               </div>
             </div>
@@ -122,52 +113,48 @@
       </section>
       <!-- Clients -->
       <section id="clients">
-        <div class="row">
           <h3 class="title">Opinions</h3>
-        </div>
-        <div class="client-container">
-          <div class="client-opinion">
+        <div class="client">
+          <div class="client__opinion">
             <span
               >Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Voluptates suscipit illo numquam corporis consectetur, voluptatum
               facere inventore exercitationem voluptatem? Corrupti rem deserunt
               repellendus id iure nulla voluptate tempora laudantium ipsa?</span
             >
-            <h4 class="client-name">~ Opinion 1</h4>
+            <h4 class="client__name">~ Opinion 1</h4>
           </div>
-          <img src="images/client1.jpg" alt="client-1" class="client-img" />
+          <img src="images/client1.jpg" alt="client-1" class="client__img" />
         </div>
-        <div class="client-container">
-          <img src="images/client.jpg" alt="client-2" class="client-img" />
-          <div class="client-opinion">
+        <div class="client">
+          <img src="images/client.jpg" alt="client-2" class="client__img" />
+          <div class="client__opinion">
             <span
               >Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Voluptates suscipit illo numquam corporis consectetur, voluptatum
               facere inventore exercitationem voluptatem? Corrupti rem deserunt
               repellendus id iure nulla voluptate tempora laudantium ipsa?</span
             >
-            <h4 class="client-name">~ Opinion 2</h4>
+            <h4 class="client__name">~ Opinion 2</h4>
           </div>
         </div>
-        <div class="client-container">
-          <div class="client-opinion">
+        <div class="client">
+          <div class="client__opinion">
             <span
               >Lorem ipsum dolor sit amet consectetur adipisicing elit.
               Voluptates suscipit illo numquam corporis consectetur, voluptatum
               facere inventore exercitationem voluptatem? Corrupti rem deserunt
               repellendus id iure nulla voluptate tempora laudantium ipsa?</span
             >
-            <h4 class="client-name">~ Opinion 3</h4>
+            <h4 class="client__name">~ Opinion 3</h4>
           </div>
-          <img src="images/client1.jpg" alt="client-3" class="client-img" />
+          <img src="images/client1.jpg" alt="client-3" class="client__img" />
         </div>
       </section>
       <!-- Contact -->
       <section id="contact">
-        <div class="row">
-          <h3 class="title title-center">Contact details</h3>
-        </div>
-        <div class="contact-column">
+          <h3 class="title">Contact details</h3>
+        <div class="contact">
           <div>
             <img src="images/location.png" alt="adres" />
             <p>Our adres:</p>
