@@ -141,7 +141,7 @@ function updateAmountInItem(){
     const inputs =Array.from(document.querySelectorAll(".toBuyProduct__amount"));
     inputs.forEach(input => {
         input.addEventListener('change',(e)=>{
-            let newAmount=parseFloat(e.target.value)
+            let newAmount=parseInt(e.target.value)
             if(newAmount<1){
             newAmount=1;
             }  
@@ -171,7 +171,7 @@ function handleAddToShoppingCartClick(e) {
   const product = e.currentTarget.parentNode.parentNode.querySelector("img");
   const productSrc = product.src;
   const productName = product.alt;
-  const productPrice = parseFloat(
+  const productPrice = parseInt(
     e.currentTarget.parentNode.parentNode.querySelector(".product__price")
       .firstChild.innerHTML
   );
