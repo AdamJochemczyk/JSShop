@@ -1,4 +1,11 @@
 const productGallery = document.querySelector(".productGallery");
+const productCounter = document.querySelector(".client__cart span");
+const wrapper = document.querySelector("#wrapper");
+const goToSummaryBtn = document.querySelector(".client__cart a");
+const summary = document.querySelector(".orderSummary");
+const leaveSummaryBtn = document.querySelector("#close");
+const summaryFooter = document.querySelector(".summary");
+let productsToBuy = [];
 
 const itemsInShop = [
   {
@@ -52,12 +59,8 @@ const html1 = itemsInShop
 const html2 = itemsInShop
   .map((item, index) => generateGallery(item, index))
   .join("");
-const html = html1 + html2;
-productGallery.innerHTML = html;
+productGallery.innerHTML = html1 + html2;
 
-const productCounter = document.querySelector(".client__cart span");
-
-const productsToBuy = [];
 function generateSummaryItems({ src, alt, amount, price }) {
   return `
 <div class="toBuyProduct">
@@ -66,23 +69,34 @@ function generateSummaryItems({ src, alt, amount, price }) {
           </div>
           <div class="toBuyProduct__right">
             <h1>${alt}</h1>
-            Amount: ${amount}
-            <span class="cost">${amount * price} $</span>
+            Amount: <input class="toBuyProduct__amount" type='number' value='${amount}' min='1'>
+            <button type="button" class="toBuyProduct__remove">Remove</button>
+            <span class="cost">Total: ${amount * price} $</span>
           </div>
           </div>
           <hr />
         `;
 }
+function removeItem(e) {
+  const itemNameToRemove = e.target.parentNode.querySelector("h1").innerText;
+  productsToBuy = productsToBuy.filter(({ alt }) => alt !== itemNameToRemove);
+  updateSummaryItems();
+}
+function updateRemoveButtons() {
+  const removeButtons = Array.from(
+    document.querySelectorAll(".toBuyProduct__remove")
+  );
+  removeButtons.forEach((removeButton) => {
+    removeButton.addEventListener("click", removeItem);
+  });
+}
 
-const summaryFooter = document.querySelector(".summary");
-function generateSummary() {
-  const cost = productsToBuy.reduce((prev, { price, amount }) => {
+function getTotalCost() {
+  return productsToBuy.reduce((prev, { price, amount }) => {
     return prev + price * amount;
   }, 0);
-  summaryFooter.innerHTML = `
-        <span>Total cost: ${cost} $</span><a href="" class="summary__submit">Submit order</a>
-        `;
-
+}
+function addSummarySubmitAction() {
   document
     .querySelector(".summary__submit")
     .addEventListener("click", function (e) {
@@ -91,16 +105,14 @@ function generateSummary() {
     });
 }
 
-function handleClick(e) {
-  e.preventDefault();
-  const product = e.currentTarget.parentNode.parentNode.querySelector("img");
-  const productSrc = product.src;
-  const productName = product.alt;
-  const productPrice = parseFloat(
-    e.currentTarget.parentNode.parentNode.querySelector(".product__price")
-      .firstChild.innerHTML
-  );
+function generateSummaryFooter() {
+  summaryFooter.innerHTML = `
+        <span>Total cost: ${getTotalCost()} $</span><a href="" class="summary__submit">Submit order</a>
+        `;
+  addSummarySubmitAction();
+}
 
+function addProductToBuy(productSrc, productName, productPrice) {
   let found = false;
   for (let i = 0; i < productsToBuy.length; i++) {
     if (productsToBuy[i].alt == productName) {
@@ -117,27 +129,68 @@ function handleClick(e) {
       amount: 1,
     });
   }
-  productCounter.innerHTML = productsToBuy.length;
+}
+
+function updateProductsCounter() {
+  productCounter.innerHTML = productsToBuy.reduce(
+    (prev, { amount }) => prev + amount,
+    0
+  );
+}
+function updateAmountInItem(){
+    const inputs =Array.from(document.querySelectorAll(".toBuyProduct__amount"));
+    inputs.forEach(input => {
+        input.addEventListener('change',(e)=>{
+            let newAmount=parseFloat(e.target.value)
+            if(newAmount<1){
+            newAmount=1;
+            }  
+            const itemName = e.target.parentNode.querySelector("h1").innerText;
+            for(let i=0;i<productsToBuy.length;i++){
+                if(productsToBuy[i].alt===itemName)
+                {
+                    productsToBuy[i].amount=newAmount;
+                }
+            }
+            updateSummaryItems();
+        })
+    });
+}
+function updateSummaryItems() {
   const summaryItemsHTML = productsToBuy
     .map((productToBuy) => generateSummaryItems(productToBuy))
     .join("");
   document.querySelector(".product-in-summary").innerHTML = summaryItemsHTML;
-  generateSummary();
+  updateRemoveButtons();
+  generateSummaryFooter();
+  updateProductsCounter();
+  updateAmountInItem();
 }
-const products = document.querySelectorAll("a.addToShoppingCart");
-products.forEach((product) => product.addEventListener("click", handleClick));
+function handleAddToShoppingCartClick(e) {
+  e.preventDefault();
+  const product = e.currentTarget.parentNode.parentNode.querySelector("img");
+  const productSrc = product.src;
+  const productName = product.alt;
+  const productPrice = parseFloat(
+    e.currentTarget.parentNode.parentNode.querySelector(".product__price")
+      .firstChild.innerHTML
+  );
 
-const wrapper = document.querySelector("#wrapper");
-const goToSummaryBtn = document.querySelector(".client__cart a");
-const summary = document.querySelector(".orderSummary");
+  addProductToBuy(productSrc, productName, productPrice);
+  updateProductsCounter();
+  updateSummaryItems();
+}
+
+const products = document.querySelectorAll("a.addToShoppingCart");
+products.forEach((product) =>
+  product.addEventListener("click", handleAddToShoppingCartClick)
+);
+
 function actionSummary(e) {
   e.preventDefault();
-  if (productsToBuy.length > 0) {
-    wrapper.classList.toggle("wrapper");
-    summary.classList.toggle("openSummary");
-  }
+  wrapper.classList.toggle("wrapper");
+  summary.classList.toggle("openSummary");
 }
 
-const leaveSummaryBtn = document.querySelector("#close");
 goToSummaryBtn.addEventListener("click", actionSummary);
 leaveSummaryBtn.addEventListener("click", actionSummary);
