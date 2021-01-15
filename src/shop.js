@@ -1,11 +1,11 @@
-const productGallery = document.querySelector(".productGallery");
-const productCounter = document.querySelector(".client__cart span");
-const wrapper = document.querySelector("#wrapper");
-const goToSummaryBtn = document.querySelector(".client__cart a");
-const summary = document.querySelector(".orderSummary");
-const leaveSummaryBtn = document.querySelector("#close");
-const summaryFooter = document.querySelector(".summary");
-let productsToBuy = [];
+let productGallery,
+  productCounter,
+  wrapper,
+  goToSummaryBtn,
+  summary,
+  leaveSummaryBtn,
+  summaryFooter,
+  productsToBuy = [];
 
 const itemsInShop = [
   {
@@ -21,7 +21,7 @@ const itemsInShop = [
     price: 2.5,
   },
   {
-    name: "Zestaw do yerby",
+    name: "YerbaKit",
     price: 10,
   },
   {
@@ -34,7 +34,19 @@ const itemsInShop = [
   },
 ];
 
-function generateGallery(item, index) {
+function getElements() {
+  productGallery = document.querySelector(".productGallery");
+  productCounter = document.querySelector(".client__cart span");
+  goToSummaryBtn = document.querySelector(".client__cart a");
+  wrapper = document.querySelector("#wrapper");
+  summary = document.querySelector(".orderSummary");
+  leaveSummaryBtn = document.querySelector("#close");
+  summaryFooter = document.querySelector(".summary");
+}
+
+getElements();
+
+function generateGalleryItem(item, index) {
   const { name, price } = item;
   return `
             <div class="product">
@@ -52,16 +64,20 @@ function generateGallery(item, index) {
             `;
 }
 
-//better method for this?
-const html1 = itemsInShop
-  .map((item, index) => generateGallery(item, index))
-  .join("");
-const html2 = itemsInShop
-  .map((item, index) => generateGallery(item, index))
-  .join("");
-productGallery.innerHTML = html1 + html2;
+function injectGallery() {
+  productGallery=document.querySelector(".productGallery")
+  const html1 = itemsInShop
+    .map((item, index) => generateGalleryItem(item, index))
+    .join("");
+  const html2 = itemsInShop
+    .map((item, index) => generateGalleryItem(item, index))
+    .join("");
+  productGallery.innerHTML = html1 + html2;
+}
 
-function generateSummaryItems({ src, alt, amount, price }) {
+injectGallery()
+
+function generateSummaryItem({ src, alt, amount, price }) {
   return `
 <div class="toBuyProduct">
           <div class="toBuyProduct__left">
@@ -77,11 +93,13 @@ function generateSummaryItems({ src, alt, amount, price }) {
           <hr />
         `;
 }
+
 function removeItem(e) {
   const itemNameToRemove = e.target.parentNode.querySelector("h1").innerText;
   productsToBuy = productsToBuy.filter(({ alt }) => alt !== itemNameToRemove);
   updateSummaryItems();
 }
+
 function updateRemoveButtons() {
   const removeButtons = Array.from(
     document.querySelectorAll(".toBuyProduct__remove")
@@ -96,6 +114,7 @@ function getTotalCost() {
     return prev + price * amount;
   }, 0);
 }
+
 function addSummarySubmitAction() {
   document
     .querySelector(".summary__submit")
@@ -137,28 +156,29 @@ function updateProductsCounter() {
     0
   );
 }
-function updateAmountInItem(){
-    const inputs =Array.from(document.querySelectorAll(".toBuyProduct__amount"));
-    inputs.forEach(input => {
-        input.addEventListener('change',(e)=>{
-            let newAmount=parseInt(e.target.value)
-            if(newAmount<1){
-            newAmount=1;
-            }  
-            const itemName = e.target.parentNode.querySelector("h1").innerText;
-            for(let i=0;i<productsToBuy.length;i++){
-                if(productsToBuy[i].alt===itemName)
-                {
-                    productsToBuy[i].amount=newAmount;
-                }
-            }
-            updateSummaryItems();
-        })
+
+function updateAmountInItem() {
+  const inputs = Array.from(document.querySelectorAll(".toBuyProduct__amount"));
+  inputs.forEach((input) => {
+    input.addEventListener("change", (e) => {
+      let newAmount = parseInt(e.target.value);
+      if (newAmount < 1) {
+        newAmount = 1;
+      }
+      const itemName = e.target.parentNode.querySelector("h1").innerText;
+      for (let i = 0; i < productsToBuy.length; i++) {
+        if (productsToBuy[i].alt === itemName) {
+          productsToBuy[i].amount = newAmount;
+        }
+      }
+      updateSummaryItems();
     });
+  });
 }
+
 function updateSummaryItems() {
   const summaryItemsHTML = productsToBuy
-    .map((productToBuy) => generateSummaryItems(productToBuy))
+    .map(productToBuy => generateSummaryItem(productToBuy))
     .join("");
   document.querySelector(".product-in-summary").innerHTML = summaryItemsHTML;
   updateRemoveButtons();
@@ -166,6 +186,7 @@ function updateSummaryItems() {
   updateProductsCounter();
   updateAmountInItem();
 }
+
 function handleAddToShoppingCartClick(e) {
   e.preventDefault();
   const product = e.currentTarget.parentNode.parentNode.querySelector("img");
@@ -192,5 +213,17 @@ function actionSummary(e) {
   summary.classList.toggle("openSummary");
 }
 
-goToSummaryBtn.addEventListener("click", actionSummary);
-leaveSummaryBtn.addEventListener("click", actionSummary);
+function getSummaryButtons() {
+  goToSummaryBtn.addEventListener("click", actionSummary);
+  leaveSummaryBtn.addEventListener("click", actionSummary);
+}
+
+getSummaryButtons();
+
+export {
+  generateGalleryItem,
+  getElements,
+  injectGallery,
+  getSummaryButtons,
+  actionSummary,
+};
