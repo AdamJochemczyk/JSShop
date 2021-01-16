@@ -115,6 +115,10 @@ a {
   left: 35%;
   top: 2%;
 }
+.product-in-summary{
+  height: 400px;
+  overflow-y: auto;
+}
 .toBuyProduct {
   display: flex;
   align-items: center;
