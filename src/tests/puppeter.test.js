@@ -3,7 +3,6 @@ const puppeter = require("puppeteer");
 test("Basic functions in page work correctly", async () => {
   const browser = await puppeter.launch({
     headless: false,
-    slowMo: 80,
     args: ["--window-size=1366,768"],
     defaultViewport: {
       width: 1366,
@@ -17,6 +16,7 @@ test("Basic functions in page work correctly", async () => {
   await page.waitForSelector(
     "#wrapper > section > div:nth-child(1) > div.product__params > a"
   );
+
   await page.click(
     "#wrapper > section > div:nth-child(1) > div.product__params > a"
   );
@@ -25,4 +25,30 @@ test("Basic functions in page work correctly", async () => {
     (el) => el.textContent
   );
   expect(productsInCart).toBe("1");
-}, 15000);
+  await page.click(
+    "#wrapper > div > div > a > i"
+  );
+  await page.click(
+    "body > main > section > div.product-in-summary > div > div.toBuyProduct__right > input"
+  );
+  await page.type(
+    "body > main > section > div.product-in-summary > div > div.toBuyProduct__right > input","4"
+  );
+  await page.click(
+    "body > main > section > div.product-in-summary > div > div.toBuyProduct__right > span"
+  );
+  const totalCost = await page.$eval(
+    "body > main > section > div.summary > span", el=>el.textContent
+  );
+  expect(totalCost).toBe("Total cost: 28 $");
+
+  await page.click(
+    "body > main > section > div.product-in-summary > div > div.toBuyProduct__right > button"
+  );
+  const finalCost = await page.$eval(
+    "body > main > section > div.summary > span",
+    (el) => el.textContent
+  );
+  expect(finalCost).toBe("Total cost: 0 $");
+
+});
